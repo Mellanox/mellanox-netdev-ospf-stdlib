@@ -1,0 +1,110 @@
+{
+  "project_page": "https://github.com/mellanox/puppet-netdev-ospf-stdlib",
+  "checksums": {
+    "LICENSE": "c4f312808b2c126959c93563ab45bd83",
+    "Modulefile": "60c7ff87ff0e51a6bcb68c5562bdc1cf",
+    "README": "5552a391b51de09ca37ed0a3c38c3184",
+    "lib/puppet/type/netdev_router_ospf.rb": "1fb810d276ce83a71ca7351f0d94831b",
+    "lib/puppet/type/netdev_ospf_area.rb": "f3a6d8d7561c39d6c5727856ac52c72b",
+    "lib/puppet/type/netdev_ospf_interface.rb": "e4137d69dc017c3c27c0e1b5572d015a",
+    "CHANGELOG.md": "56c09d2fed825d202004718e5d5393e9"
+  },
+  "license": "See LICENSE file",
+  "source": "https://github.com/NetdevOps/puppet-netdev-stdlib",
+  "description": "Netdev OSPF is a vendor-neutral network abstraction framework developed by Mellanox and contributed freely to the DevOps community.",
+  "dependencies": [
+
+  ],
+  "summary": "Type definitions for Networking Device (netdev) OSPF Library",
+  "author": "David Slama, Aviram Bar-Haim & NetdevOps Contributors",
+  "name": "mellanox-netdev_ospf_stdlib",
+  "types": [
+    {
+      "providers": [
+        {
+          "name": "mlnxos",
+          "doc": "Manage netdev device ospf interface on a switch\n\nDefault for `netdev_type` == `MLNX`."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The OSPF interface name"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`."
+        },
+        {
+          "name": "area_id",
+          "doc": "The OSPF interface associated area number  Values can match `/^\\d+$/`."
+        },
+        {
+          "name": "type",
+          "doc": "The OSPF interface network type  Valid values are `broadcast`, `point_to_point`, `nbma`, `pointToMultipoint`."
+        }
+      ],
+      "name": "netdev_ospf_interface",
+      "doc": "Network Device OSPF Interface"
+    },
+    {
+      "providers": [
+        {
+          "name": "mlnxos",
+          "doc": "Manage netdev device ospf router on a switch\n\nDefault for `netdev_type` == `MLNX`."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The area id  Values can match `/^\\d+$/`."
+        }
+      ],
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`."
+        },
+        {
+          "name": "subnets",
+          "doc": "Subnets list of the form [x1.x2.x3.x4/y1, x5.x6.x7.x8/y2]"
+        },
+        {
+          "name": "router_id",
+          "doc": "The Router OSPF associated with this area"
+        },
+        {
+          "name": "ospf_area_mode",
+          "doc": "The Router OSPF area mode  Valid values are `normal`, `stub`, `nssa`."
+        }
+      ],
+      "name": "netdev_ospf_area",
+      "doc": "Network Device OSPF Area Interface"
+    },
+    {
+      "providers": [
+        {
+          "name": "mlnxos",
+          "doc": "Manage netdev router ospf on a switch\n\nDefault for `netdev_type` == `MLNX`."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The router id"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`."
+        }
+      ],
+      "name": "netdev_router_ospf",
+      "doc": "Network Device Router OSPF"
+    }
+  ],
+  "version": "1.0.0"
+}

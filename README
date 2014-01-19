@@ -1,0 +1,51 @@
+# OVERVIEW
+
+Netdev is a vendor-neutral network abstraction framework contributed freely to the DevOps community.
+
+This module contains the puppet types code for OSPF resources.
+
+# EXAMPLE USAGE
+
+This module has been tested against Puppet agent 2.7.19.  Here is a short example of a static manifest for an Ethernet switch.
+
+~~
+
+node "My_Ethernet_switch" {
+
+  netdev_router_ospf{
+    'default':
+      ensure => present
+  }
+
+  netdev_ospf_area{
+    '10':
+      ensure         => present,
+      router_id      => 'default',
+      ospf_area_mode => stub,
+      subnets        => ["192.168.4.0/24", "192.168.5.0/24"]
+  }
+
+  netdev_ospf_interface{
+    'vlan 4':
+      ensure  => present,
+      area_id => '10',
+      type    => point_to_point,
+      require => Netdev_ospf_area['10']
+  }
+
+}
+
+~~~
+
+# INSTALLATION ON PUPPET-MASTER
+
+  * puppet module install mellanox-netdev_ospf_stdlib
+
+# CONTRIBUTORS
+
+   David Slama, Mellanox Technologies
+   Aviram Bar-Haim, Mellanox Technologies
+
+License
+-------
+See LICENSE file
